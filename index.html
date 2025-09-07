@@ -5,27 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Vieqirara Space</title>
     <link rel="stylesheet" href="css/login.css">
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/glass.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
+    <div class="login-container">
         <div class="glass-card">
-            <h1>Vieqirara Space</h1>
-            <form id="loginForm">
+            <div class="login-header">
+                <div class="logo-container">
+                    <div class="logo">🌸</div>
+                    <h1>Vieqirara Space</h1>
+                </div>
+                <p>Tempat kenangan indahmu</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
                 <div class="input-group">
                     <input type="text" id="username" placeholder="Username" required>
+                    <div class="input-icon">👤</div>
                 </div>
+                
                 <div class="input-group">
                     <input type="password" id="password" placeholder="Password" required>
+                    <div class="input-icon">🔒</div>
                 </div>
-                <button type="submit" class="btn-login">Login</button>
-                <div id="error-message" class="error-message">Username atau password salah!</div>
+                
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">Masuk</span>
+                    <div class="btn-icon">→</div>
+                </button>
+                
+                <div id="errorMessage" class="error-message">
+                    Username atau password salah!
+                </div>
             </form>
+            
+            <div class="login-footer">
+                <p>Hanya untuk vieqirara 💖</p>
+            </div>
         </div>
     </div>
-
-    <!-- Library CryptoJS untuk enkripsi -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    
+    <div class="background-elements">
+        <div class="bubble bubble-1"></div>
+        <div class="bubble bubble-2"></div>
+        <div class="bubble bubble-3"></div>
+        <div class="bubble bubble-4"></div>
+    </div>
+    
     <script src="js/login.js"></script>
 </body>
 </html>
