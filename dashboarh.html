@@ -13,23 +13,20 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      height: 100vh;
+      justify-content: start;
+      min-height: 100vh;
       text-align: center;
+      padding: 20px;
     }
 
     h1 {
       font-size: 2rem;
       color: #ff7043;
-    }
-
-    p {
-      color: #555;
-      margin-top: 10px;
+      margin-top: 20px;
     }
 
     .logout-btn {
-      margin-top: 20px;
+      margin-top: 15px;
       padding: 10px 20px;
       font-size: 1rem;
       border: none;
@@ -44,31 +41,82 @@
       background: #e35b2e;
     }
 
-    footer {
-      position: absolute;
-      bottom: 10px;
+    /* Spotify search style */
+    h2 {
+      margin-top: 40px;
+      color: #ff7043;
+    }
+
+    .spotify-search {
+      margin-top: 15px;
       display: flex;
       gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .spotify-search input {
+      padding: 10px;
+      border: 2px solid #ff7043;
+      border-radius: 10px;
+      width: 250px;
+      font-size: 1rem;
+    }
+
+    .spotify-search button {
+      background: #1DB954;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .spotify-search button:hover {
+      background: #17a74a;
+    }
+
+    .spotify-player {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: auto;
       font-size: 2rem;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      padding-bottom: 15px;
     }
   </style>
 </head>
 <body>
-  <h1>Selamat Datang, <span id="username"></span>! 🐱</h1>
-  <p>Ini adalah dashboard khusus Vieqi.</p>
+  <h1>Selamat Datang, <span id="username"></span>! 🎵</h1>
   <button class="logout-btn" onclick="logout()">Logout</button>
+
+  <!-- Spotify Section -->
+  <h2>Putar Lagu Spotify</h2>
+  <div class="spotify-search">
+    <input type="text" id="spotifySearch" placeholder="Masukkan URL lagu Spotify...">
+    <button onclick="playSpotify()">Putar</button>
+  </div>
+
+  <div id="spotifyPlayer" class="spotify-player">
+    <p>Masukkan link lagu Spotify untuk memutar musik.</p>
+  </div>
 
   <footer>
     🐱 😺 😻 😹 😼
   </footer>
 
   <script>
-    // Ambil username dari localStorage
+    // ====== Cek Login ======
     const username = localStorage.getItem("loggedInUser");
-
     if (!username) {
-      // Kalau belum login, paksa balik ke halaman login
-      window.location.href = "index.html";
+      window.location.href = "index.html"; // Balik ke login kalau belum masuk
     } else {
       document.getElementById("username").textContent = username;
     }
@@ -76,6 +124,27 @@
     function logout() {
       localStorage.removeItem("loggedInUser");
       window.location.href = "index.html";
+    }
+
+    // ====== Spotify Player ======
+    function playSpotify() {
+      const url = document.getElementById("spotifySearch").value.trim();
+      const playerDiv = document.getElementById("spotifyPlayer");
+
+      if (url.includes("spotify.com/track")) {
+        const trackId = url.split("/track/")[1].split("?")[0];
+
+        playerDiv.innerHTML = `
+          <iframe style="border-radius:12px" 
+            src="https://open.spotify.com/embed/track/${trackId}" 
+            width="300" height="380" frameBorder="0" 
+            allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+          </iframe>
+        `;
+      } else {
+        playerDiv.innerHTML = "<p style='color:red;'>Link tidak valid! Harus link lagu Spotify.</p>";
+      }
     }
   </script>
 </body>
