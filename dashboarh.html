@@ -1,116 +1,416 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Vieqi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Fredoka', sans-serif;
-      background: linear-gradient(to bottom, #ffe0c2, #ffd1b3);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: start;
-      min-height: 100vh;
-      text-align: center;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 2rem;
-      color: #ff7043;
-      margin-top: 20px;
-    }
-
-    .logout-btn {
-      margin-top: 15px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 12px;
-      background: #ff7043;
-      color: white;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .logout-btn:hover {
-      background: #e35b2e;
-    }
-
-    /* Spotify search style */
-    h2 {
-      margin-top: 40px;
-      color: #ff7043;
-    }
-
-    .spotify-search {
-      margin-top: 15px;
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .spotify-search input {
-      padding: 10px;
-      border: 2px solid #ff7043;
-      border-radius: 10px;
-      width: 250px;
-      font-size: 1rem;
-    }
-
-    .spotify-search button {
-      background: #1DB954;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .spotify-search button:hover {
-      background: #17a74a;
-    }
-
-    .spotify-player {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    footer {
-      margin-top: auto;
-      font-size: 2rem;
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      padding-bottom: 15px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vieqirara Space - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/glass.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <h1>Selamat Datang, <span id="username"></span>! 🎵</h1>
-  <button class="logout-btn" onclick="logout()">Logout</button>
-
-  <!-- Spotify Section -->
-  <h2>Putar Lagu Spotify</h2>
-  <div class="spotify-search">
-    <input type="text" id="spotifySearch" placeholder="Masukkan URL lagu Spotify...">
-    <button onclick="playSpotify()">Putar</button>
-  </div>
-
-  <div id="spotifyPlayer" class="spotify-player">
-    <p>Masukkan link lagu Spotify untuk memutar musik.</p>
-  </div>
-
-  <footer>
-    🐱 😺 😻 😹 😼
-  </footer>
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <div class="logo-icon">🌸</div>
+                <span class="logo-text">Vieqirara Space</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#" class="nav-link active" data-page="home">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="#" class="nav-link" data-page="media">
+                    <i class="fas fa-images"></i>
+                    <span>Media</span>
+                </a>
+                <a href="#" class="nav-link" data-page="notes">
+                    <i class="fas fa-sticky-note"></i>
+                    <span>Notes</span>
+                </a>
+                <a href="#" class="nav-link" data-page="album">
+                    <i class="fas fa-book"></i>
+                    <span>Album</span>
+                </a>
+                <a href="#" class="nav-link" data-page="music">
+                    <i class="fas fa-music"></i>
+                    <span>Music</span>
+                </a>
+                <a href="#" class="nav-link" data-page="watch">
+                    <i class="fas fa-film"></i>
+                    <span>Watch Party</span>
+                </a>
+            </div>
+            
+            <div class="nav-user">
+                <div class="user-avatar">👤</div>
+                <span class="user-name">vieqirara</span>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="page-header">
+                <h1>Selamat Datang, Vieqirara! 💖</h1>
+                <p>Ini adalah ruang pribadimu untuk menyimpan kenangan indah</p>
+            </div>
+            
+            <div class="home-grid">
+                <div class="glass-card home-card">
+                    <div class="card-icon">📸</div>
+                    <h3>Upload Media</h3>
+                    <p>Bagikan foto dan video kenanganmu</p>
+                    <button class="card-btn" id="uploadMediaBtn">Upload</button>
+                </div>
+                
+                <div class="glass-card home-card">
+                    <div class="card-icon">🎵</div>
+                    <h3>Spotify Player</h3>
+                    <p>Dengarkan lagu favoritmu</p>
+                    <button class="card-btn" id="spotifyBtn">Buka Player</button>
+                </div>
+                
+                <div class="glass-card home-card">
+                    <div class="card-icon">📝</div>
+                    <h3>Notes</h3>
+                    <p>Catat kenangan dan pemikiranmu</p>
+                    <button class="card-btn" id="notesBtn">Buka Notes</button>
+                </div>
+                
+                <div class="glass-card home-card">
+                    <div class="card-icon">📖</div>
+                    <h3>Photo Album</h3>
+                    <p>Lihat album foto kenangan</p>
+                    <button class="card-btn" id="albumBtn">Buka Album</button>
+                </div>
+                
+                <div class="glass-card home-card">
+                    <div class="card-icon">🎬</div>
+                    <h3>Watch Party</h3>
+                    <p>Nonton video bersama</p>
+                    <button class="card-btn" id="watchPartyBtn">Mulai</button>
+                </div>
+                
+                <div class="glass-card home-card">
+                    <div class="card-icon">💬</div>
+                    <h3>Komentar</h3>
+                    <p>Lihat semua komentar</p>
+                    <button class="card-btn" id="commentsBtn">Lihat</button>
+                </div>
+            </div>
+            
+            <div class="recent-posts">
+                <h2>Postingan Terbaru</h2>
+                <div class="posts-container" id="recentPosts">
+                    <!-- Posts will be loaded here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Media Page -->
+        <div id="media-page" class="page">
+            <div class="page-header">
+                <h1>Media Gallery</h1>
+                <p>Upload dan lihat semua foto & video</p>
+            </div>
+            
+            <div class="media-actions">
+                <button class="glass-btn" id="uploadPhotoBtn">
+                    <i class="fas fa-camera"></i> Upload Foto
+                </button>
+                <button class="glass-btn" id="uploadVideoBtn">
+                    <i class="fas fa-video"></i> Upload Video
+                </button>
+            </div>
+            
+            <div class="media-tabs">
+                <button class="tab-btn active" data-tab="photos">Foto</button>
+                <button class="tab-btn" data-tab="videos">Video</button>
+            </div>
+            
+            <div class="media-container">
+                <div id="photos-tab" class="media-tab active">
+                    <div class="media-grid" id="photosGrid">
+                        <!-- Photos will be loaded here -->
+                    </div>
+                </div>
+                
+                <div id="videos-tab" class="media-tab">
+                    <div class="media-grid" id="videosGrid">
+                        <!-- Videos will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Notes Page -->
+        <div id="notes-page" class="page">
+            <div class="page-header">
+                <h1>Notes</h1>
+                <p>Catat kenangan dan pemikiranmu</p>
+            </div>
+            
+            <div class="notes-actions">
+                <button class="glass-btn" id="newNoteBtn">
+                    <i class="fas fa-plus"></i> Note Baru
+                </button>
+            </div>
+            
+            <div class="notes-container" id="notesContainer">
+                <!-- Notes will be loaded here -->
+            </div>
+        </div>
+        
+        <!-- Album Page -->
+        <div id="album-page" class="page">
+            <div class="page-header">
+                <h1>Photo Album</h1>
+                <p>Koleksi album foto kenangan</p>
+            </div>
+            
+            <div class="album-actions">
+                <button class="glass-btn" id="newAlbumBtn">
+                    <i class="fas fa-plus"></i> Album Baru
+                </button>
+            </div>
+            
+            <div class="albums-container" id="albumsContainer">
+                <!-- Albums will be loaded here -->
+            </div>
+        </div>
+        
+        <!-- Music Page -->
+        <div id="music-page" class="page">
+            <div class="page-header">
+                <h1>Spotify Player</h1>
+                <p>Dengarkan lagu favoritmu</p>
+            </div>
+            
+            <div class="spotify-container">
+                <div class="spotify-player">
+                    <div class="spotify-search">
+                        <input type="text" id="spotifySearch" placeholder="Cari lagu atau paste link Spotify">
+                        <button id="spotifySearchBtn"><i class="fas fa-search"></i></button>
+                    </div>
+                    
+                    <div class="spotify-player-embed" id="spotifyPlayer">
+                        <!-- Spotify embed will be loaded here -->
+                    </div>
+                    
+                    <div class="spotify-playlist">
+                        <h3>Playlist Favorit</h3>
+                        <div class="playlist-container" id="playlistContainer">
+                            <!-- Playlist items will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Watch Party Page -->
+        <div id="watch-page" class="page">
+            <div class="page-header">
+                <h1>Watch Party</h1>
+                <p>Nonton video bersama dari Google Drive</p>
+            </div>
+            
+            <div class="watch-party-container">
+                <div class="watch-party-setup">
+                    <div class="setup-group">
+                        <label>Google Drive Link:</label>
+                        <input type="text" id="driveLink" placeholder="Paste Google Drive video link">
+                    </div>
+                    
+                    <div class="setup-group">
+                        <label>Room Name:</label>
+                        <input type="text" id="roomName" placeholder="Nama room">
+                    </div>
+                    
+                    <button class="glass-btn" id="createRoomBtn">Buat Room</button>
+                </div>
+                
+                <div class="watch-party-player" id="watchPartyPlayer" style="display: none;">
+                    <div class="player-container">
+                        <iframe id="videoPlayer" src="" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    
+                    <div class="player-controls">
+                        <button id="playPauseBtn"><i class="fas fa-play"></i></button>
+                        <button id="syncBtn"><i class="fas fa-sync"></i> Sync</button>
+                        <div class="time-display">
+                            <span id="currentTime">00:00</span> / <span id="duration">00:00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-container">
+                        <div class="chat-messages" id="chatMessages">
+                            <!-- Chat messages will appear here -->
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="chatInput" placeholder="Ketik pesan...">
+                            <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3>Upload Media</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <p>Drag & drop file atau klik untuk browse</p>
+                    <input type="file" id="fileInput" accept="image/*,video/*" multiple>
+                </div>
+                
+                <div class="upload-preview" id="uploadPreview">
+                    <!-- Preview will be shown here -->
+                </div>
+                
+                <div class="upload-form">
+                    <div class="form-group">
+                        <label>Caption:</label>
+                        <textarea id="uploadCaption" placeholder="Tulis caption..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Tags (pisahkan dengan koma):</label>
+                        <input type="text" id="uploadTags" placeholder="Tag1, Tag2, Tag3">
+                    </div>
+                    
+                    <button class="glass-btn" id="uploadSubmitBtn">Upload</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Note Modal -->
+    <div id="noteModal" class="modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3>Note Baru</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Judul:</label>
+                    <input type="text" id="noteTitle" placeholder="Judul note">
+                </div>
+                
+                <div class="form-group">
+                    <label>Isi:</label>
+                    <textarea id="noteContent" placeholder="Tulis note..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Tanggal:</label>
+                    <input type="date" id="noteDate">
+                </div>
+                
+                <div class="form-group">
+                    <label>Warna:</label>
+                    <div class="color-picker">
+                        <div class="color-option" data-color="#FFB6C1" style="background-color: #FFB6C1;"></div>
+                        <div class="color-option" data-color="#FFC0CB" style="background-color: #FFC0CB;"></div>
+                        <div class="color-option" data-color="#FFCCCB" style="background-color: #FFCCCB;"></div>
+                        <div class="color-option" data-color="#FFD1DC" style="background-color: #FFD1DC;"></div>
+                        <div class="color-option" data-color="#FFE4E1" style="background-color: #FFE4E1;"></div>
+                    </div>
+                </div>
+                
+                <button class="glass-btn" id="saveNoteBtn">Simpan</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Album Modal -->
+    <div id="albumModal" class="modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3>Album Baru</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nama Album:</label>
+                    <input type="text" id="albumName" placeholder="Nama album">
+                </div>
+                
+                <div class="form-group">
+                    <label>Deskripsi:</label>
+                    <textarea id="albumDescription" placeholder="Deskripsi album"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Cover Album:</label>
+                    <div class="album-cover-upload">
+                        <div class="upload-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <p>Upload cover album</p>
+                        <input type="file" id="albumCover" accept="image/*">
+                    </div>
+                </div>
+                
+                <button class="glass-btn" id="createAlbumBtn">Buat Album</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Comment Modal -->
+    <div id="commentModal" class="modal">
+        <div class="modal-content glass-card">
+            <div class="modal-header">
+                <h3>Komentar</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="comments-list" id="commentsList">
+                    <!-- Comments will be loaded here -->
+                </div>
+                
+                <div class="comment-form">
+                    <textarea id="commentText" placeholder="Tulis komentar..."></textarea>
+                    <button class="glass-btn" id="postCommentBtn">Kirim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/main.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/media.js"></script>
+    <script src="js/spotify.js"></script>
+    <script src="js/notes.js"></script>
+    <script src="js/album.js"></script>
+    <script src="js/comments.js"></script>
+    <script src="js/watchparty.js"></script>
+</body>
+                      </html>  </footer>
 
   <script>
     // ====== Cek Login ======
