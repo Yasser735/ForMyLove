@@ -1,45 +1,22 @@
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Mencegah reload halaman
-    
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const errorMsg = document.getElementById('error-message');
-    
-    // Validasi login
-    if(username === "vieqirara" && password === "030506020207") {
-        // Login berhasil
-        errorMsg.style.display = 'none';
-        
-        // Tampilkan pesan sukses
-        const successDiv = document.createElement('div');
-        successDiv.className = 'success-message';
-        successDiv.textContent = 'Login berhasil! Selamat datang, vieqirara!';
-        successDiv.style.cssText = `
-            background: #06d6a0;
-            color: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            font-weight: 600;
-        `;
-        
-        document.querySelector('.login-box').appendChild(successDiv);
-        
-        // Redirect setelah 2 detik
-        setTimeout(() => {
-            window.location.href = "dashboard.html";
-        }, 2000);
-        
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorMessage = document.getElementById("error-message");
+    const successMessage = document.getElementById("success-message");
+    const userDisplay = document.getElementById("user-display");
+
+    // Username & Password yang benar
+    const correctUsername = "vieqirara";
+    const correctPassword = "030506020207";
+
+    if (username === correctUsername && password === correctPassword) {
+        errorMessage.style.display = "none";
+        successMessage.style.display = "block";
+        userDisplay.textContent = username;
     } else {
-        // Login gagal
-        errorMsg.style.display = 'block';
-        
-        // Reset form
-        document.getElementById('loginForm').reset();
-        
-        // Sembunyikan pesan error setelah 3 detik
-        setTimeout(() => {
-            errorMsg.style.display = 'none';
-        }, 3000);
+        successMessage.style.display = "none";
+        errorMessage.style.display = "block";
     }
 });
